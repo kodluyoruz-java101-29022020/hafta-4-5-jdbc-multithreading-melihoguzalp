@@ -6,12 +6,16 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
+import org.apache.log4j.BasicConfigurator;
+
 import db.connection.mysql.connection.dao.DepartmentDAO;
 import db.connection.mysql.connection.dao.EmployeeDAO;
 import db.connection.mysql.connection.dao.ManagerDAO;
 import db.connection.mysql.connection.dao.SalaryDAO;
+import db.connection.mysql.connection.model.Department;
 import db.connection.mysql.connection.model.Employee;
 import db.connection.mysql.connection.model.EmployeeProfile;
+import db.connection.mysql.connection.model.Manager;
 import db.connection.mysql.connection.service.DepartmentService;
 import db.connection.mysql.connection.service.EmployeeService;
 import db.connection.mysql.connection.service.ManagerService;
@@ -22,7 +26,7 @@ public class Application {
 	private static Scanner scanner = new Scanner(System.in);
 	
 	public static void main(String[] args) {
-		
+		BasicConfigurator.configure();
 		showMenu();
 		
 		EmployeeDAO employeeDAO = new EmployeeDAO();
@@ -69,10 +73,12 @@ public class Application {
 					System.out.println();
 					break;
 				case 7:
-					// burada aktif yöneticileri listeleyen bir fonksiyon yazmalısınız.
+					listActiveManagers(managerService);
+					System.out.println();
 					break;
 				case 8:
-					// burada tüm departmanları listeleyiniz.
+					listDepartments(departmentService);
+					System.out.println();
 					break;
 				default:
 					break;
@@ -202,13 +208,28 @@ public class Application {
 	
 	public static void listActiveManagers(ManagerService managerService) {
 		
-		// Burada ManagerService üzerinden aktif yöneticilerin listesini çekiniz ve ekrana yazdırınız
 		
-	}
+		List<Manager> managers = managerService.findAll();
+		
+		Iterator<Manager> iterator = managers.iterator();
+		while(iterator.hasNext()) {
+			
+			Manager manager = iterator.next();
+			System.out.println(manager.toString());
+		}	}
+		
+		
+	
 	
 	public static void listDepartments(DepartmentService departmentService) {
 		
-		// Burada tğm departmanları listeleyen ve ekrana gösteren kodu yazınız.
-	}
+		List<Department> departments = departmentService.findAll();
+		
+		Iterator<Department> iterator = departments.iterator();
+		while(iterator.hasNext()) {
+			
+			Department department = iterator.next();
+			System.out.println(department.toString());
+		}	}
 
 }

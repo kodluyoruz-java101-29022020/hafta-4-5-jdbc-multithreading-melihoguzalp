@@ -22,4 +22,14 @@ public class Manager {
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
+	
+	
+	@Override
+	public String toString() {
+		return "Active_Manager [id=" + employee.getId() + " , name=" + employee.getName() + ","
+				+ " lastName=" + employee.getLastName() + ", gender=" + employee.getGender() + ", "
+						+ "birthDate=" + employee.getBirthDate() +", hireDate=" + employee.getHireDate()  + ", "
+								+ "Department Name=" + departmentName + "]";
+	}
+	
 }

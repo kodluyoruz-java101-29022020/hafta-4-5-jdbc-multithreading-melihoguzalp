@@ -1,13 +1,14 @@
 package db.connection.mysql.connection.model;
 
-public class Department {
+public class Department implements Comparable<Department> {
 
 	private String name;
 	private String deptNo;
 	
 	public Department(String deptNo, String name) {
-		this.name = name;
+		
 		this.deptNo = deptNo;
+		this.name = name;
 	}
 
 	public String getName() {
@@ -24,6 +25,17 @@ public class Department {
 
 	public void setDeptNo(String deptNo) {
 		this.deptNo = deptNo;
+	}
+
+	@Override
+	public String toString() {
+		return "Department [deptNo=" + deptNo + ", name=" + name + "]";
+	}
+	
+	@Override
+	public int compareTo(Department o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

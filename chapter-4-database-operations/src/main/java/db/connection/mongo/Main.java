@@ -7,6 +7,7 @@ public class Main {
 
 	public static String dbName = "employee";
 	
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		
 		// Get all database names
